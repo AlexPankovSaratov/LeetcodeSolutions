@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LeetcodeSolutions
 {
-	class EasyDifficulty
+	public class EasyDifficulty
 	{
 		/*
 		Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.

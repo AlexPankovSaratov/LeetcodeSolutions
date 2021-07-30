@@ -4,7 +4,7 @@ using System.Text;
 
 namespace LeetcodeSolutions
 {
-	class HardDifficulty
+	public class HardDifficulty
 	{
 	}
 }

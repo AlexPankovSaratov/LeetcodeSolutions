@@ -6,7 +6,11 @@ namespace LeetcodeSolutions
 	{
 		static void Main(string[] args)
 		{
-			
+			EasyDifficulty easyDifficulty = new EasyDifficulty();
+			MediumDifficulty mediumDifficulty = new MediumDifficulty();
+			HardDifficulty hardDifficulty = new HardDifficulty();
+
+			mediumDifficulty.LengthOfLongestSubstring("acbcc");
 		}
 	}
 }

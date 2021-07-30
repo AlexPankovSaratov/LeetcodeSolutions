@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LeetcodeSolutions
 {
-	class MediumDifficulty
+	public class MediumDifficulty
 	{
 		/*
 		You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order,
@@ -79,6 +79,76 @@ namespace LeetcodeSolutions
 				lastNode = resNode;
 			}
 			return resNode;
+		}
+
+		/*
+		Given a string s, find the length of the longest substring without repeating characters.
+		Example 1:
+
+		Input: s = "abcabcbb"
+		Output: 3
+		Explanation: The answer is "abc", with the length of 3.
+		*/
+		public int LengthOfLongestSubstring(string s)
+		{
+			#region My algorithm
+			//List<char> strArr = s.ToList<char>();
+			//int maxLength = 0;
+			//List<char> targetArr = new List<char>();
+			//for (int i = 0; i < strArr.Count; i++)
+			//{
+			//	if (targetArr.Contains(strArr[i]))
+			//	{
+			//		if (targetArr.Count > maxLength) maxLength = targetArr.Count;
+			//		strArr = strArr.Skip(strArr.IndexOf(strArr[i]) + 1).ToList();
+			//		i = -1;
+			//		targetArr.Clear();
+			//	}
+			//	else
+			//	{
+			//		targetArr.Add(strArr[i]);
+			//	}
+			//}
+			//if (targetArr.Count > maxLength) maxLength = targetArr.Count;
+			//return maxLength;
+			#endregion
+
+			#region Leetcode algorithm
+			List<string> ArrStr = new List<string>();
+			int n = s.Length;
+			int res = 0;
+			for (int i = 0; i < n; i++)
+			{
+				for (int j = i; j < n; j++)
+				{
+					if (!ArrStr.Contains(s.Substring(i, j - i + 1)))
+					{
+						if (checkRepetition(s, i, j))
+						{
+							res = Math.Max(res, j - i + 1);
+						}
+						ArrStr.Add(s.Substring(i, j - i + 1));
+					}
+				}
+			}
+			return res;
+		}
+		private bool checkRepetition(string s, int start, int end)
+		{
+			int[] chars = new int[128];
+
+			for (int i = start; i <= end; i++)
+			{
+				char c = s.ElementAt(i);
+				chars[c]++;
+				if (chars[c] > 1)
+				{
+					return false;
+				}
+			}
+
+			return true;
+			#endregion
 		}
 	}
 }
