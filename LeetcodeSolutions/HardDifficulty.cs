@@ -65,5 +65,76 @@ namespace LeetcodeSolutions
 				return UnionArr.ElementAt((UnionArr.Count / 2));
 			}
 		}
+
+		/*
+		You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
+		Merge all the linked-lists into one sorted linked-list and return it.
+
+		Example 1:
+
+		Input: lists = [[1,4,5],[1,3,4],[2,6]]
+		Output: [1,1,2,3,4,4,5,6]
+		Explanation: The linked-lists are:
+		[
+		  1->4->5,
+		  1->3->4,
+		  2->6
+		]
+		merging them into one sorted list:
+		1->1->2->3->4->4->5->6
+		*/
+		public ListNode MergeKLists(ListNode[] lists)
+		{
+			List<ListNode> MainLists = lists.Where(n => n != null).ToList();
+			ListNode ResultListNode = null;
+			ListNode LastListNode = null;
+			int MinVal = int.MaxValue;
+			List<int> ListIndex = new List<int>();
+
+			while (MainLists.Count() > 0)
+			{
+				for (int i = 0; i < MainLists.Count; i++)
+				{
+					if (MainLists[i].val < MinVal)
+					{
+						MinVal = MainLists[i].val;
+						ListIndex.Clear();
+						ListIndex.Add(i);
+					}
+					else if (MainLists[i].val == MinVal)
+					{
+						ListIndex.Add(i);
+					}
+				}
+				foreach (var item in ListIndex)
+				{
+					if (ResultListNode == null)
+					{
+						ResultListNode = new ListNode(MainLists[item].val);
+						LastListNode = ResultListNode;
+					}
+					else
+					{
+						LastListNode.next = new ListNode(MainLists[item].val);
+						LastListNode = LastListNode.next;
+					}
+				}
+				ListIndex.Reverse();
+				foreach (var item in ListIndex)
+				{
+					if (MainLists[item].next == null)
+					{
+						MainLists.RemoveAt(item);
+					}
+					else
+					{
+						MainLists[item] = MainLists[item].next;
+					}
+				}
+				MinVal = int.MaxValue;
+			}
+
+			return ResultListNode;
+		}
 	}
 }
