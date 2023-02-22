@@ -10,11 +10,12 @@ namespace LeetcodeSolutions
 			MediumDifficulty mediumDifficulty = new MediumDifficulty();
 			HardDifficulty hardDifficulty = new HardDifficulty();
 
-			
+			mediumDifficulty.ShipWithinDays(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 5);
 		}
 	}
 
 	#region Helper classes
+
 	public class ListNode
 	{
 		public int val;
@@ -25,5 +26,22 @@ namespace LeetcodeSolutions
 			this.next = next;
 		}
 	}
+
+	/// <summary>
+	/// Definition for a binary tree node.
+	/// </summary>
+	public class TreeNode
+	{
+		public int val;
+		public TreeNode left;
+		public TreeNode right;
+		public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+		{
+			this.val = val;
+			this.left = left;
+			this.right = right;
+		}
+	}
+
 	#endregion
 }
