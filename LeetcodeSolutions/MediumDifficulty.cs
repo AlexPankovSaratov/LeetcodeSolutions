@@ -210,6 +210,45 @@ namespace LeetcodeSolutions
 			return minCapacityShip;
 		}
 
+		/*
+		 A decimal number is called deci-binary if each of its digits is either 0 or 1 without any leading zeros. For example, 101 and 1100 are deci-binary, while 112 and 3001 are not.
+
+		Given a string n that represents a positive decimal integer, return the minimum number of positive deci-binary numbers needed so that they sum up to n.
+
+ 
+
+		Example 1:
+
+		Input: n = "32"
+		Output: 3
+		Explanation: 10 + 11 + 11 = 32
+		Example 2:
+
+		Input: n = "82734"
+		Output: 8
+		Example 3:
+
+		Input: n = "27346209830709182346"
+		Output: 9
+ 
+
+		Constraints:
+
+		1 <= n.length <= 105
+		n consists of only digits.
+		n does not contain any leading zeros and represents a positive integer.
+		*/
+		public int MinPartitions(string n)
+		{
+			return int.Parse(n.ToArray().OrderBy(c => int.Parse(c.ToString())).LastOrDefault().ToString());
+
+			//First solution
+			int countIter = 0;
+			SubtractMaxDeciBinary(n, ref countIter);
+			return countIter;
+		}
+
+		#region private metods
 		private int GetCountDayByWeight(int[] weights, int capacityShip)
 		{
 			int ostCapacity = 0;
@@ -228,5 +267,29 @@ namespace LeetcodeSolutions
 			}
 			return countDays;
 		}
+
+		private void SubtractMaxDeciBinary(string n, ref int countIter)
+		{
+			char[] maxDeciBinary = new char[n.Length];
+			char[] subtractionResult = new char[n.Length];
+			var needCallNext = false;
+			for (int i = 0; i < n.Length; i++)
+			{
+				if (n[i] != '0')
+				{
+					maxDeciBinary[i] = '1';
+				}
+				else
+				{
+					maxDeciBinary[i] = '0';
+				}
+				subtractionResult[i] = (int.Parse(n[i].ToString()) - int.Parse(maxDeciBinary[i].ToString())).ToString().FirstOrDefault();
+				if (subtractionResult[i] != '0') needCallNext = true;
+			}
+			countIter++;
+			if (needCallNext) SubtractMaxDeciBinary(new string(subtractionResult), ref countIter);
+		}
+		#endregion
+
 	}
 }
