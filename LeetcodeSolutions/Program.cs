@@ -10,7 +10,7 @@ namespace LeetcodeSolutions
 			MediumDifficulty mediumDifficulty = new MediumDifficulty();
 			HardDifficulty hardDifficulty = new HardDifficulty();
 
-			mediumDifficulty.MinPartitions("32");
+			mediumDifficulty.GenerateParenthesis(7);
 		}
 	}
 

@@ -248,6 +248,56 @@ namespace LeetcodeSolutions
 			return countIter;
 		}
 
+		/*
+		 Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+
+		Example 1:
+
+		Input: n = 3
+		Output: ["((()))","(()())","(())()","()(())","()()()"]
+		Example 2:
+
+		Input: n = 1
+		Output: ["()"]
+ 
+
+		Constraints:
+
+		1 <= n <= 8
+		*/
+		public IList<string> GenerateParenthesis(int n)
+		{
+			List<string> resultList = new List<string>();
+			if (n == 0) return resultList;
+			if (n == 1) return new List<string> { "()" };
+			foreach (var item in GenerateParenthesis(n - 1))
+			{
+				var itemArr = item.ToArray();
+				for (int i = 0; i < item.Length; i++)
+				{
+					var targetCase = "(" + item.Insert(i, ")");
+					if (!resultList.Contains(targetCase))
+					{
+						resultList.Add(targetCase);
+					}
+					targetCase = item.Insert(i, "(") + ")";
+					if (!resultList.Contains(targetCase))
+					{
+						resultList.Add(targetCase);
+					}
+					if (i < n / 2)
+					{
+						targetCase = item.Insert(i, "(").Insert(n - i, ")");
+						if (!resultList.Contains(targetCase))
+						{
+							resultList.Add(targetCase);
+						}
+					}
+				}
+			}
+			return resultList;
+		}
+
 		#region private metods
 		private int GetCountDayByWeight(int[] weights, int capacityShip)
 		{
