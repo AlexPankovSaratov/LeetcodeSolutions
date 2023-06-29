@@ -138,20 +138,17 @@ namespace LeetcodeSolutions
 		}
 
 		/*
-		A path in a binary tree is a sequence of nodes where each pair of adjacent nodes in the sequence has an edge connecting them. 
-		A node can only appear in the sequence at most once. Note that the path does not need to pass through the root.
-		The path sum of a path is the sum of the node's values in the path.
-		Given the root of a binary tree, return the maximum path sum of any path.
+		The n-queens puzzle is the problem of placing n queens on an n x n chessboard such that no two queens attack each other.
+		Given an integer n, return all distinct solutions to the n-queens puzzle. You may return the answer in any order.
+		Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space, respectively.
 
-		Example 1:
-
-		Input: root = [-10,9,20,null,null,15,7]
-		Output: 42
-		Explanation: The optimal path is 15 -> 20 -> 7 with a path sum of 15 + 20 + 7 = 42.
+		Input: n = 4
+		Output: [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]]
+		Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above
 		*/
-		public int MaxPathSum(TreeNode root)
+		public IList<IList<string>> SolveNQueens(int n)
 		{
-			return 1;
+
 		}
 	}
 }
